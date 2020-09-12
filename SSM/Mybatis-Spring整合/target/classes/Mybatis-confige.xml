@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--&lt;!&ndash;    引入外部配置文件&ndash;&gt;-->
+<!--    <properties resource="jdbc.properties">-->
+<!--        <property name="root" value="root"/>-->
+<!--        <property name="pas" value="123456"/>-->
+<!--    </properties>-->
+<!--&lt;!&ndash;    去别名&ndash;&gt;-->
+<!--    <typeAliases>-->
+<!--        <typeAlias type="pojo.User" alias="user"/>-->
+<!--    </typeAliases>-->
+<!--&lt;!&ndash;    默认环境&ndash;&gt;-->
+<!--    <environments default="development">-->
+<!--&lt;!&ndash;        第一种环境&ndash;&gt;-->
+<!--        <environment id="development">-->
+<!--&lt;!&ndash;            事务管理类型jdbc和managed&ndash;&gt;-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--                <property name="url" value="jdbc:mysql://localhost:3306/dbstudent?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT%2B8" />-->
+<!--                <property name="username" value="root"/>-->
+<!--                <property name="password" value="123456"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--&lt;!&ndash;        第二种环境&ndash;&gt;-->
+<!--        <environment id="test">-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="${driver}"/>-->
+<!--                <property name="url" value="http://www.example.com"/>-->
+<!--                <property name="username" value="${root}"/>-->
+<!--                <property name="password" value="${pas}"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+
+    <mappers>
+        <mapper class="daoMapper.UserMapper"/>
+    </mappers>
+</configuration>

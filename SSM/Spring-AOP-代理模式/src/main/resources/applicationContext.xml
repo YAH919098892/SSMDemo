@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-4.3.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+<!--imp类使用-->
+<context:component-scan base-package="Service"/>
+    <aop:aspectj-autoproxy/>
+
+    <bean id="bf" class="Service.LogoXml"/>
+    <bean id="imp" class="Service.UserServiceImp"/>
+    <bean id="pro" class="Service.UserServiceProxy"/>
+
+<aop:config>
+    <aop:pointcut id="poin" expression="execution(* Service.UserServiceImp.*(..))"/>
+    <aop:advisor advice-ref="bf" pointcut-ref="poin"/>
+</aop:config>
+
+<!--    自定义类-->
+    <bean id="noImp" class="Service.LogeNoImp"/>
+<aop:config>
+    <aop:aspect ref="noImp">
+        <aop:pointcut id="an" expression="execution(* Service.UserServiceImp.*(..))"/>
+        <aop:before method="aft" pointcut-ref="an"/>
+    </aop:aspect>
+</aop:config>
+
+
+</beans>

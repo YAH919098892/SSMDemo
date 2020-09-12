@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--通过bena连接数据库-->
+    <bean id="data" class="com.mchange.v2.c3p0.ComboPooledDataSource"/>
+<!--    <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>-->
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/dbstudent?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT%2B8"/>-->
+<!--        <property name="password" value="123456"/>-->
+<!--        <property name="username" value="root"/>-->
+<!--    </bean>-->
+    <bean id="datasource"  class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/dbstudent?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT%2B8"/>
+        <property name="password" value="123456"/>
+        <property name="user" value="root"/>
+    </bean>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <!--        绑定mybatis配置文件-->
+<!--       <property name="configLocation" value="classpath:Mybatis-confige.xml"/>-->
+        <property name="mapperLocations" value="classpath:daoMapper/UserMapper.xml"/>
+    </bean>
+<!--    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+<!--        <property name="basePackage" value="daoMapper.UserMapper"/>-->
+<!--        <property name="sqlSessionTemplateBeanName" value="sqlSessionFactory"/>-->
+<!--    </bean>-->
+    <bean id="sqlsession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+</beans>

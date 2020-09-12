@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+
+">
+<context:component-scan base-package="service"/>
+    <bean id="imp2" class="dao.Imp2"></bean>
+    <bean id="imp" class="dao.Ipm"></bean>
+<!--    set注入-->
+<bean id="userservice" class="service.UserServiceImp" >
+
+</bean>
+
+<!--    构造器注入-->
+<!--    <bean id="userservice2" class="service.UserServiceImp" >-->
+<!--        <constructor-arg index="0" ref="imp"/>-->
+<!--        <constructor-arg index="1" ref="imp2"/>-->
+<!--    </bean>-->
+<bean id="stuP" class="pojo.Student" p:name="安华" scope="prototype"></bean>
+<bean id="stuC" class="pojo.Student" c:name="杨阿华"></bean>
+
+    <bean id="students" class="pojo.Student">
+        <property name="name" value="杨安华"/>
+        <property name="games">
+            <set>
+                <value>LOL</value>
+                <value>王者</value>
+            </set>
+        </property>
+        <property name="hobbys">
+            <list>
+                <value>打球</value>
+                <value>敲代码</value>
+                <value>看电影</value>
+            </list>
+        </property>
+    </bean>
+</beans>

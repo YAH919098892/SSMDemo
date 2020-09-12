@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    引入外部配置文件-->
+    <properties resource="jdbc.properties">
+        <property name="root" value="root"/>
+        <property name="pas" value="123456"/>
+    </properties>
+
+<!--    去别名-->
+    <typeAliases>
+
+    </typeAliases>
+<!--    默认环境-->
+    <environments default="development">
+<!--        第一种环境-->
+        <environment id="development">
+<!--            事务管理类型jdbc和managed-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/dbstudent?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT%2B8" />
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+<!--        第二种环境-->
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="http://www.example.com"/>
+                <property name="username" value="${root}"/>
+                <property name="password" value="${pas}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="dao/TbClassMapper.xml"/>
+        <mapper resource="dao/StudentMapper.xml"/>
+<!--        <mapper class="dao.UserDaoMapper"/>-->
+<!--        <package name="/dao/*Mapper.xml"/>-->
+    </mappers>
+
+</configuration>

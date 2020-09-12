@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<import resource="mybatis-spring.xml"/>
+
+<!--    <bean id="userMapper" class="daoMapper.UserMapperImp">-->
+<!--        <property name="sqlSessionTemplate" ref="sqlsession"/>-->
+<!--    </bean>-->
+<!--&lt;!&ndash;    ·½Ê½2&ndash;&gt;-->
+<!--    <bean id="userMapperImp2" class="daoMapper.UserMapperImp2">-->
+<!--       <property name="sqlSessionFactory" ref="sqlSessiononFactory"/>-->
+<!--    </bean>-->
+</beans>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserDaoMapper">
+    <insert id="addUser" parameterType="pojo.User">
+        insert into tbuser(no,NAME,PASSWORD) value (#{no},#{name},#{password})
+    </insert>
+    <update id="updateUser" parameterType="pojo.User">
+        update tbuser set name=#{name},password=#{password} where no=#{no};
+    </update>
+    <update id="updateUserMap">
+        update tbuser set name=#{name},password=#{pass} where no=#{no}
+    </update>
+    <delete id="delectUser" parameterType="int">
+        delete from tbuser where no=#{id}
+    </delete>
+    <select id="getUserList" resultType="user">
+    select * from tbuser
+  </select>
+    <select id="getUser" parameterType="int" resultType="pojo.User">
+        select * from tbuser where no=#{no};
+    </select>
+    <select id="getUserById" parameterType="map" resultType="pojo.User">
+insert into tbuser (NO,NAME,PASSWORD) value (#{myno},#{name},#{pass})
+    </select>
+<!--    模糊查询-->
+    <select id="getUserLike" resultType="pojo.User">
+        select * from tbuser where name like #{value}
+    </select>
+
+</mapper>

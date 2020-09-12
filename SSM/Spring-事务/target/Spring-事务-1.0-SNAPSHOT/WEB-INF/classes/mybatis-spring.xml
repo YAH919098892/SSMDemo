@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--通过bena连接数据库-->
+    <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/an?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT%2B8"/>
+        <property name="password" value="123456"/>
+        <property name="username" value="root"/>
+    </bean>
+    <bean id="sqlSessiononFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+<!--        <property name="transactionFactory">-->
+<!--        <bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />-->
+<!--    </property>-->
+        <property name="mapperLocations" value="classpath:daoMapper/UserMapper.xml"/>
+        <!--        绑定mybatis配置文件-->
+        <!--   <property name="configLocation" value="classpath:Mybatis-confige.xml"/>-->
+<!--        <property name="mapperLocations" value="classpath:daoMapper/UserMapper.xml"/>-->
+    </bean>
+    <bean id="sqlsession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessiononFactory"/>
+    </bean>
+    <bean id="sqlsessionTampale" class="daoMapper.UserMapperImp2">
+        <property name="sqlSessionTemplate" ref="sqlsession"/>
+    </bean>
+
+<!--    事务声明-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="datasource"/>
+    </bean>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+<!--        给那些方法配置事务-->
+        <tx:attributes>
+<!--            <tx:method name="selectUser" propagation="REQUIRED"/>-->
+<!--            <tx:method name="addUser" propagation="REQUIRED"/>-->
+<!--            <tx:method name="delete" propagation="REQUIRED"/>-->
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <aop:config>
+        <aop:pointcut id="txPointcut" expression="execution(* daoMapper.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
+</beans>

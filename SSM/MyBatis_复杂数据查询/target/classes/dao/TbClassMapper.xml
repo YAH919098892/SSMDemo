@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.TbClassMapper">
+    <select id="getTbClass2" resultMap="getTbClassAndStudent" resultType="pojo.TbClass" >
+        select s.classid,c.no,s.name,c.TID from tbclass as c,tbstudent as s where s.CLASSID=c.NO and c.no=#{no}
+    </select>
+    <resultMap id="getTbClassAndStudent" type="pojo.TbClass">
+        <result property="no" column="no"/>
+        <result property="name" column="name"/>
+        <result property="tid" column="tid"/>
+        <collection property="student" column="classid" ofType="pojo.Student">
+            <result property="classid" column="classid"/>
+            <result property="name" column="name"/>
+            <result property="hometown" column="hometown"/>
+        </collection>
+    </resultMap>
+</mapper>

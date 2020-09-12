@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserMapper">
+
+    <insert id="addUser" parameterType="map">
+        insert into tbadd (id,name,birstaday,ai_hao) value (#{id},#{name},#{birstaday},#{aiHao});
+    </insert>
+    <update id="updateUser" parameterType="map">
+         update tbadd
+            <set>
+                <if test="name != null">name=#{name},</if>
+                <if test="aiHao != null">ai_hao=#{aiHao},</if>
+                <if test="home != null">home=#{home},</if>
+                <if test="birstaday !=null">birstaday=#{birstaday},</if>
+            </set>
+            where id=#{id}
+
+    </update>
+    <!--    if多条件查询-->
+    <select id="showUser" parameterType="map" resultType="pojo.User">
+<!--        select * from tbadd where 1=1-->
+<!--        <if test="name != null">-->
+<!--            and name like #{name}-->
+<!--        </if>-->
+<!--        <if test="aiHao != null">-->
+<!--            and ai_hao = #{aiHao}-->
+<!--        </if>-->
+        select * from tbadd
+        <where>
+            <if test="name != null">
+                and name like #{name}
+            </if>
+            <if test="aiHao != null">
+                and ai_hao = #{aiHao}
+            </if>
+        </where>
+
+    </select>
+<!--    choose多条件查询-->
+    <select id="showUserChoose" parameterType="map" resultType="pojo.User">
+        SELECT * FROM tbadd WHERE id=#{id}
+        <choose>
+            <when test="home != null">
+                AND home = #{home}
+            </when>
+            <when test="aiHao != null">
+                AND ai_hao = #{aiHao}
+            </when>
+            <otherwise>
+                AND ai_hao = #{aiHao}
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

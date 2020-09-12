@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Jakson" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MVCSpringMybatis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MyBatis-增删改查" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MyBatis_动态SQL-缓存" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MyBatis_复杂数据查询" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MyBatis_注解开发" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/MyBatis作用域分页" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Mybatis-Spring整合" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ServletTest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring-AOP-代理模式" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring-AopTest" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring-事务" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring-注解开发" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Spring-自动装配" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringMVC1" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringMVCLogin" charset="UTF-8" />
+  </component>
+</project>
